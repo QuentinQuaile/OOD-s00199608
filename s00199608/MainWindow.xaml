@@ -1,0 +1,100 @@
+﻿<Window x:Class="s00199608.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:s00199608"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <Style x:Key="btnSmall" TargetType="Button">
+            <Setter Property="Background" Value="DarkGray"></Setter>
+        </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="Background" Value="DarkGray"></Setter>
+            <Setter Property="BorderThickness" Value="6px"></Setter>
+            <Setter Property="BorderBrush" Value="LightGray"></Setter>
+        </Style>
+
+        <DataTemplate x:Key="listboxTemp">
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Image Source="{Binding Image}" Width="75" Height="75"/>
+
+                <StackPanel>
+                    <TextBlock Text="{Binding Name}" Margin="5" FontSize="12"/>
+                </StackPanel>
+
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+
+        <TabControl TabStripPlacement="Top">
+            <TabItem Header="Anime" Width="60">
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListBox x:Name="ListAnime" ItemTemplate="{StaticResource listboxTemp}" Grid.Column="0" HorizontalAlignment="Left" Height="335" Margin="10,46,0,0" VerticalAlignment="Top" Width="288" SelectionChanged="listBox_SelectionChanged"/>
+                    <TextBlock Grid.Column="1" x:Name="Details" HorizontalAlignment="Left" Margin="0,147,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="51" Width="251"><Run Text="Release Date:"/><LineBreak/><Run Text="Publisher:"/><LineBreak/><Run Text="Airing Date:"/></TextBlock>
+                    <TextBlock Grid.Column="1" x:Name="desc" HorizontalAlignment="Left" Margin="0,203,0,0" TextWrapping="Wrap" Text="Description: " VerticalAlignment="Top" />
+                    <Image Grid.Column="1" x:Name="Picture" HorizontalAlignment="Left" Height="122" Margin="50,20,0,0" VerticalAlignment="Top" Width="251"/>
+                    <Button x:Name="Random" Content="Random" Margin="19,353,21,10" Grid.Column="2" Style="{StaticResource btnSmall}" Click="Random_Click"/>
+                    <CheckBox  Grid.Column="0" x:Name="Isekai" Content="Isekai" HorizontalAlignment="Left" Margin="10,24,0,0" VerticalAlignment="Top" Checked="Isekai_Checked" Unchecked="Isekai_Unchecked"/>
+                    <CheckBox x:Name="Action"  Grid.Column="0" Content="Action" HorizontalAlignment="Left" Margin="86,24,0,0" VerticalAlignment="Top" Unchecked="Action_Unchecked" Checked="Action_Checked"/>
+                    <CheckBox x:Name="Horror"  Grid.Column="0" Content="Horror" HorizontalAlignment="Left" Margin="162,24,0,0" VerticalAlignment="Top" Checked="Horror_Checked" Unchecked="Horror_Unchecked"/>
+                    <Button x:Name="button" Content="Full Img" Grid.Column="2" Margin="19,83,27,277" Click="button_Click" Style="{StaticResource btnSmall}"/>
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Review" Width="60">
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListBox Grid.Column="0" x:Name="Reviews" HorizontalAlignment="Left" Height="335" Margin="10,46,0,0" VerticalAlignment="Top" Width="288"  SelectionChanged="Reviews_SelectionChanged"/>
+                    <TextBlock x:Name="AnimeName" Grid.Column="1" HorizontalAlignment="Left" Margin="10,46,0,0" TextWrapping="Wrap" Text="Anime Name:" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="Review" Grid.Column="1" HorizontalAlignment="Left" Margin="10,81,0,0" TextWrapping="Wrap" Text="Review:" VerticalAlignment="Top" Width="317" Height="125"/>
+                    <TextBlock x:Name="Score" TextWrapping="Wrap" Text="Score / 10" Grid.Column="1" Margin="229,211,11,152"/>
+                    <TextBox x:Name="EnterAnime" TextWrapping="Wrap" Text="Enter Anime Name:" RenderTransformOrigin="0.492,0.478" Grid.Column="1" Margin="9,244,11,114"/>
+                    <TextBox x:Name="EnterReview" TextWrapping="Wrap" Text="Enter Review:" Margin="9,282,11,10" Grid.Column="1"/>
+                    <Button x:Name="CreateReview" Content="Create" Grid.Column="2" HorizontalAlignment="Left" Margin="27,347,0,0" VerticalAlignment="Top" Width="75" Style="{StaticResource btnSmall}" Click="CreateReview_Click"/>
+                    <TextBox x:Name="EnterScore" TextWrapping="Wrap" Text="Enter 0-10 score" Grid.Column="2" Margin="27,282,11,67"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Github" Width="60">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <Image x:Name="image" Grid.Row="1" Grid.Column="1" Height="100" Width="100"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2">           
+                        <Hyperlink NavigateUri="https://github.com/QuentinQuaile/OOD-s00199608" RequestNavigate="Hyperlink_RequestNavigate">
+                            Click here
+                        </Hyperlink>
+                    </TextBlock>
+                </Grid>
+            </TabItem>
+
+
+
+
+        </TabControl>
+    </Grid>
+</Window>
